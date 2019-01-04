@@ -1,0 +1,34 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 20 Dec, 2018, 12:14:05 PM
+    Author     : omkarkamate
+*/
+
+.body{
+    -fx-background-image: url("projectKpLoginback.jpg");
+    -fx-background-size: 100% 100%;
+}
+
+.logo{
+    -fx-background-image: url("bvpnewlogo.png");
+    -fx-background-size: 100% 100%;
+}
+
+.theme{
+     -fx-background-image: url("grey.jpg");
+    -fx-background-size: 100% 100%;
+}
+
+
+.admin{
+     -fx-background-image: url("personimage.jpg");
+    -fx-background-size: 100% 100%;
+}
+.table-view .column-header,
+.table-view .column-header-background .filler {
+    -fx-background-color:  #6622CC; 
+}

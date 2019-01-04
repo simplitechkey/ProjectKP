@@ -5,6 +5,7 @@
  */
 package projectfinalkp;
 
+import animatefx.animation.FadeInDownBig;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -25,6 +26,7 @@ public class ProjectFinalKP extends Application {
         
         stage.setScene(scene);
         stage.show();
+     new FadeInDownBig(root).play();
     }
 
     /**

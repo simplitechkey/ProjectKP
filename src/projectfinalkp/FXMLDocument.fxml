@@ -1,14 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="200" prefWidth="320" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projectfinalkp.FXMLDocumentController">
-    <children>
-        <Button layoutX="126" layoutY="90" text="Click Me!" onAction="#handleButtonAction" fx:id="button" />
-        <Label layoutX="126" layoutY="120" minHeight="16" minWidth="69" fx:id="label" />
-    </children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" styleClass="body" stylesheets="@FullScreen.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projectfinalkp.FXMLDocumentController">
+   <children>
+      <AnchorPane fx:id="loginscreen" layoutX="697.0" layoutY="136.0" prefHeight="400.0" prefWidth="400.0" style="-fx-background-color: white; -fx-background-radius: 55;" AnchorPane.bottomAnchor="104.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="136.0">
+         <children>
+            <JFXTextField focusColor="BLACK" labelFloat="true" layoutX="87.0" layoutY="135.0" prefHeight="25.0" prefWidth="228.0" promptText="Username" unFocusColor="#797979">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </JFXTextField>
+            <JFXButton layoutX="93.0" layoutY="281.0" prefHeight="45.0" prefWidth="201.0" ripplerFill="WHITE" style="-fx-background-color: black; -fx-background-radius: 30;" text="Login" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font></JFXButton>
+            <JFXPasswordField focusColor="BLACK" labelFloat="true" layoutX="87.0" layoutY="207.0" prefHeight="25.0" prefWidth="228.0" promptText="Password" unFocusColor="#797979">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </JFXPasswordField>
+            <FontAwesomeIconView glyphName="USER" layoutX="290.0" layoutY="160.0" selectionFill="BLACK" size="20" text="" wrappingWidth="21.71428680419922" />
+            <FontAwesomeIconView glyphName="LOCK" layoutX="290.0" layoutY="233.0" size="20" />
+            <Label layoutX="47.0" layoutY="31.0" prefHeight="67.0" prefWidth="289.0" style="-fx-background-color: white;" text="Please Login With Your Account..!" textAlignment="RIGHT" textFill="#111111">
+               <font>
+                  <Font name="Calibri Bold" size="18.0" />
+               </font>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </Label>
+         </children>
+         <effect>
+            <DropShadow color="WHITE" height="60.0" radius="29.5" width="60.0" />
+         </effect>
+      </AnchorPane>
+      <Label layoutX="263.0" layoutY="36.0" prefHeight="46.0" prefWidth="780.0" style="-fx-background-color: transparent;" text="Welcome to Zulf's Salon Management System" textFill="WHITE" AnchorPane.bottomAnchor="518.0" AnchorPane.leftAnchor="263.0" AnchorPane.topAnchor="36.0">
+         <font>
+            <Font name="System Bold Italic" size="31.0" />
+         </font>
+         <padding>
+            <Insets left="10.0" />
+         </padding>
+      </Label>
+   </children>
 </AnchorPane>
