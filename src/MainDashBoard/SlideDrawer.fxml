@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="BOTTOM_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="589.0" prefWidth="255.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="162.0" fitWidth="253.0" pickOnBounds="true">
+         <image>
+            <Image url="@dashback.jpg" />
+         </image>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </ImageView>
+      <JFXButton prefHeight="83.0" prefWidth="351.0" text="Add Staff" />
+      <JFXButton prefHeight="76.0" prefWidth="357.0" text="Add Client" />
+      <JFXButton prefHeight="76.0" prefWidth="357.0" text="Statistics" />
+      <JFXButton prefHeight="76.0" prefWidth="357.0" text="Book an Appointment" />
+      <JFXButton prefHeight="76.0" prefWidth="357.0" />
+   </children>
+</VBox>

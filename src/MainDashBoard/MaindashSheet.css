@@ -1,0 +1,9 @@
+.jfx-hamburger StackPane{
+    -fx-background-color: #ffffff;
+}
+
+.body{
+    -fx-background-image: url("loginback.jpg");
+    -fx-background-size: 100% 100%;
+}
+
