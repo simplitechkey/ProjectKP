@@ -5,6 +5,7 @@
  */
 package MainDashBoard;
 
+import DatabaseHelper.DBDAO;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
@@ -14,6 +15,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -54,7 +56,7 @@ public class MainDashBoardController implements Initializable {
             hamburgerSlideCloseTransition.play();
             if (menuDrawer.isOpened()) {
                 menuDrawer.close(); 
-                             
+                            
             } else {
                 menuDrawer.open();
             }

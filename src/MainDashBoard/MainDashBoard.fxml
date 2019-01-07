@@ -15,13 +15,13 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="1200.0" style="-fx-background-color: white;" styleClass="body" stylesheets="@MaindashSheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainDashBoard.MainDashBoardController">
    <children>
-      <JFXDrawer fx:id="menuDrawer" defaultDrawerSize="350.0" layoutY="94.0" prefHeight="507.0" prefWidth="241.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" />
+      <JFXDrawer fx:id="menuDrawer" defaultDrawerSize="350.0" layoutY="94.0" prefHeight="507.0" prefWidth="241.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" />
       <Circle fill="#ebeaea" layoutX="724.0" layoutY="329.0" opacity="0.25" radius="132.0" stroke="WHITE" strokeType="INSIDE" AnchorPane.bottomAnchor="139.0" AnchorPane.leftAnchor="592.0" AnchorPane.rightAnchor="344.0" AnchorPane.topAnchor="197.0">
          <effect>
             <DropShadow color="WHITE" height="20.0" radius="9.5" width="20.0" />
          </effect>
       </Circle>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="637.0" layoutY="267.0" opacity="0.54" prefHeight="67.0" prefWidth="150.0" text="ZULF">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="649.0" layoutY="267.0" opacity="0.54" prefHeight="67.0" prefWidth="150.0" text="ZULF">
          <font>
             <Font name="Times New Roman" size="50.0" />
          </font>
@@ -48,7 +48,7 @@
          </children>
       </HBox>
       <StackPane AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-      <AnchorPane layoutX="190.0" layoutY="44.0" prefHeight="92.0" prefWidth="1200.0" style="-fx-background-color: black;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane layoutX="190.0" layoutY="44.0" prefHeight="100.0" prefWidth="1200.0" style="-fx-background-color: black;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <JFXHamburger fx:id="myHamburger" layoutX="14.0" layoutY="68.0" style="-fx-background-color: black;" stylesheets="@MaindashSheet.css" />
          </children>

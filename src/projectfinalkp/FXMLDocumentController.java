@@ -5,6 +5,8 @@
  */
 package projectfinalkp;
 
+import DatabaseHelper.DBDAO;
+import DatabaseHelper.DBUtil;
 import animatefx.animation.FadeInDownBig;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
@@ -64,6 +66,7 @@ public class FXMLDocumentController implements Initializable {
                stage.show();
                
                new FadeInDownBig(root).play();
+              
            } catch (IOException ex) {
                Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
            }

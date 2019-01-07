@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXListView?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AddNewStaff.AddNewStaffController">
+   <children>
+      <AnchorPane layoutX="200.0" layoutY="54.0" prefHeight="100.0" prefWidth="1200.0" style="-fx-background-color: black;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Circle fill="#ebeaea" layoutX="310.0" layoutY="263.0" radius="132.0" stroke="WHITE" strokeType="INSIDE">
+         <effect>
+            <DropShadow color="WHITE" height="20.0" radius="9.5" width="20.0" />
+         </effect>
+      </Circle>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="235.0" layoutY="206.0" opacity="0.54" prefHeight="67.0" prefWidth="150.0" text="ZULF">
+         <font>
+            <Font name="Times New Roman" size="50.0" />
+         </font>
+      </Label>
+      <HBox layoutX="227.0" layoutY="264.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.5" prefHeight="18.0" prefWidth="188.0">
+         <children>
+            <Label prefHeight="17.0" prefWidth="48.0" text="Beauty">
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+            </Label>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="20.0" stroke="BLACK" strokeType="INSIDE" width="2.0" />
+            <Label text="Nails">
+               <HBox.margin>
+                  <Insets left="10.0" right="10.0" />
+               </HBox.margin>
+            </Label>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="20.0" stroke="BLACK" strokeType="INSIDE" width="2.0" />
+            <Label text="Academy">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </Label>
+         </children>
+      </HBox>
+      <JFXTextField fx:id="empName" layoutX="55.0" layoutY="240.0" promptText="Enter Employee Name" />
+      <JFXTextField fx:id="empId" layoutX="55.0" layoutY="159.0" promptText="Enter Employee Id" />
+      <JFXButton layoutX="72.0" layoutY="322.0" onAction="#addNewUser" text="add new Employee" />
+      <JFXListView fx:id="empList" layoutX="385.0" layoutY="131.0" prefHeight="201.0" prefWidth="200.0" />
+   </children>
+</AnchorPane>
