@@ -5,8 +5,11 @@
  */
 package DatabaseHelper;
 
+import BeansPackage.ClientItem;
 import BeansPackage.TransactionItem;
 import java.sql.ResultSet;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -79,6 +82,49 @@ public class DBDAO {
         }
         return data;
     }
+         
+         public static void deleteTransaction(int transactionId){
+        try {
+            String sql = "delete from tableTransactions where transactionId = "+transactionId;
+            
+            DBUtil.dbexcuteQuery(sql);
+        } catch (Exception ex) {
+            Logger.getLogger(DBDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+             
+         }
     
+         
+         public static   ObservableList<ClientItem> getAllClients()
+    {
+          ObservableList<ClientItem> data=FXCollections.observableArrayList();
+        String sql = "select * from tableClients";
+        try {
+            ResultSet rs= DBUtil.dbExecute(sql);
+            
+            while(rs.next()){
+                data.add(new ClientItem(rs.getInt("clientId"),rs.getString("clientName"),rs.getString("clientMobileNumber"),rs.getString("clientEmail"),rs.getString("clientDob"),rs.getString("clientGender"),rs.getString("location"),rs.getDouble("amountBalance")));
+            }
+        } catch (Exception e) {
+
+        }
+        return data;
+    }
+         
+         
+          public static  void insertNewClient(String clientName, String clientMobileNumber, String clientEmail, String clientDOB, String clientGender, String location, double amountBalance)
+    {
+          ObservableList<String> data=FXCollections.observableArrayList();
+       String sql = "INSERT INTO tableClients(clientName,clientMobileNumber,clientEmail,clientDOB,clientGender,location,amountBalance) VALUES ('" + clientName + "','" + clientMobileNumber + "','" + clientEmail + "','" + clientDOB+ "','" + clientGender +"','" + location+"'," + amountBalance+");";
+   
+        try {
+        DBUtil.dbexcuteQuery(sql);
+            
+          
+        } catch (Exception e) {
+
+        }
+    
+    }
     
 }

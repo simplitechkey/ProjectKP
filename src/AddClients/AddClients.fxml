@@ -1,11 +1,92 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AddClients.AddClientsController">
-    
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1200.0" style="-fx-background-color: white;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="AddClients.AddClientsController">
+   <children>
+      <VBox layoutX="38.0" layoutY="124.0">
+         <children>
+            <JFXTextField fx:id="clientNameField" focusColor="BLACK" labelFloat="true" prefHeight="39.0" prefWidth="203.0" promptText="Enter Name of the Client" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20;" unFocusColor="WHITE">
+               <padding>
+                  <Insets left="20.0" right="20.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets bottom="20.0" top="20.0" />
+               </VBox.margin>
+            </JFXTextField>
+            <JFXTextField fx:id="clientMobNoField" focusColor="WHITE" prefHeight="39.0" prefWidth="203.0" promptText="Mobile Number" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20;" unFocusColor="WHITE">
+               <padding>
+                  <Insets left="20.0" right="20.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets bottom="20.0" top="20.0" />
+               </VBox.margin>
+            </JFXTextField>
+            <JFXTextField fx:id="clientEmailField" focusColor="WHITE" prefHeight="39.0" prefWidth="203.0" promptText="Email" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20;" unFocusColor="WHITE">
+               <padding>
+                  <Insets left="20.0" right="20.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets bottom="20.0" top="20.0" />
+               </VBox.margin>
+            </JFXTextField>
+            <JFXDatePicker fx:id="clientDOBField" defaultColor="BLACK" prefHeight="39.0" prefWidth="192.0" promptText="Enter DOB">
+               <VBox.margin>
+                  <Insets bottom="20.0" top="20.0" />
+               </VBox.margin>
+            </JFXDatePicker>
+         </children>
+      </VBox>
+      <AnchorPane layoutX="210.0" layoutY="64.0" prefHeight="100.0" prefWidth="1200.0" style="-fx-background-color: black;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label alignment="CENTER" layoutX="132.0" layoutY="31.0" prefHeight="39.0" prefWidth="450.0" style="-fx-border-color: white; -fx-border-radius: 20;" text="**Add New Client**" textFill="WHITE" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="250.0" AnchorPane.topAnchor="30.0">
+               <font>
+                  <Font name="Times New Roman" size="24.0" />
+               </font>
+               <effect>
+                  <DropShadow color="#a19c9c" height="20.0" radius="9.5" spread="0.01" width="20.0" />
+               </effect>
+            </Label>
+         </children>
+      </AnchorPane>
+      <VBox layoutX="307.0" layoutY="139.0">
+         <children>
+            <JFXComboBox fx:id="clientGenderField" focusColor="WHITE" prefHeight="39.0" prefWidth="203.0" promptText="Select Gender">
+               <VBox.margin>
+                  <Insets bottom="20.0" top="20.0" />
+               </VBox.margin>
+            </JFXComboBox>
+            <JFXComboBox fx:id="locationField" prefHeight="27.0" prefWidth="203.0" promptText="Location">
+               <VBox.margin>
+                  <Insets bottom="20.0" top="20.0" />
+               </VBox.margin>
+            </JFXComboBox>
+            <JFXTextField fx:id="amountPending" focusColor="WHITE" prefHeight="41.0" prefWidth="203.0" promptText="Amount Remaining" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20;" unFocusColor="WHITE">
+               <padding>
+                  <Insets left="20.0" right="20.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </JFXTextField>
+         </children>
+      </VBox>
+      <JFXButton layoutX="321.0" layoutY="378.0" onAction="#addClientAction" prefHeight="39.0" prefWidth="156.0" style="-fx-background-color: black;" text="Add Client" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </JFXButton>
+      <TableView fx:id="clientTableView" layoutX="584.0" layoutY="124.0" prefHeight="470.0" prefWidth="647.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="533.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="110.0" />
+   </children>
 </AnchorPane>

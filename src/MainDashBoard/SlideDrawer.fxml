@@ -20,6 +20,6 @@
       <JFXButton prefHeight="76.0" prefWidth="357.0" text="Add Services" />
       <JFXButton onAction="#addNewTransaction" prefHeight="76.0" prefWidth="357.0" text="Add New Transaction" />
       <JFXButton prefHeight="76.0" prefWidth="357.0" text="Book an Appointment" />
-      <JFXButton prefHeight="76.0" prefWidth="357.0" />
+      <JFXButton onAction="#addNewClientAction" prefHeight="76.0" prefWidth="357.0" text="Add Client" />
    </children>
 </VBox>
