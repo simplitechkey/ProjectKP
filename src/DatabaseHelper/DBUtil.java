@@ -24,8 +24,8 @@ public class DBUtil {
     //This method is for connecting the app to the database.
     public static void dbConnect(){
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            dbConnection=DriverManager.getConnection("jdbc:mysql://localhost:3306/ZulfDB","root","omkar#14u");  
+            Class.forName("org.sqlite.JDBC");
+            dbConnection=DriverManager.getConnection("jdbc:sqlite:ZulfDB.db");  
             if(dbConnection!=null){
             System.out.println("omkarincon");
             }else{
