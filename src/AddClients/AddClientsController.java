@@ -77,7 +77,7 @@ public class AddClientsController implements Initializable {
               
                TableColumn<ClientItem,Double>amountBalance=new TableColumn("amountBalance");
               amountBalance.setCellValueFactory(new PropertyValueFactory<>("amountBalance"));
-              
+             
              
               clientTableView.getColumns().addAll(clientId,clientName,clientMobileNumber,clientEmail,clientDOB,clientGender,location,amountBalance);
               clientTableView.setItems(DBDAO.getAllClients());

@@ -10,20 +10,27 @@ package BeansPackage;
  * @author omkarkamate
  */
 public class TransactionItem {
-int transactionId;
+  
+    int transactionId;
     String empName;
     String serviceName;
     String clientName;
+    String clientMobileNumber;
+    int clientId;
     Float amount;
     String transactionDate;
-    public TransactionItem(int transactionId, String empName, String serviceName, String clientName, String transactionDate, Float amount) {
+
+    public TransactionItem(int transactionId, String empName, String serviceName, String clientName, String clientMobileNumber, int clientId, String transactionDate, Float amount) {
         this.transactionId = transactionId;
         this.empName = empName;
         this.serviceName = serviceName;
         this.clientName = clientName;
+        this.clientMobileNumber = clientMobileNumber;
+        this.clientId = clientId;
         this.amount = amount;
         this.transactionDate = transactionDate;
     }
+
 
     public int getTransactionId() {
         return transactionId;
@@ -57,6 +64,22 @@ int transactionId;
         this.clientName = clientName;
     }
 
+    public String getClientMobileNumber() {
+        return clientMobileNumber;
+    }
+
+    public void setClientMobileNumber(String clientMobileNumber) {
+        this.clientMobileNumber = clientMobileNumber;
+    }
+
+    public int getClientId() {
+        return clientId;
+    }
+
+    public void setClientId(int clientId) {
+        this.clientId = clientId;
+    }
+
     public Float getAmount() {
         return amount;
     }
@@ -72,5 +95,5 @@ int transactionId;
     public void setTransactionDate(String transactionDate) {
         this.transactionDate = transactionDate;
     }
-
+   
 }

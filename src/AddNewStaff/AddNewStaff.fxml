@@ -4,7 +4,9 @@
 <?import com.jfoenix.controls.JFXListView?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ContextMenu?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
@@ -46,9 +48,16 @@
             </Label>
          </children>
       </HBox>
-      <JFXTextField fx:id="empName" layoutX="55.0" layoutY="240.0" promptText="Enter Employee Name" />
+      <JFXTextField fx:id="empName" layoutX="55.0" layoutY="240.0" promptText="Enter Employee Name">
+         <contextMenu>
+            <ContextMenu fx:id="empNameListsearch">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Unspecified Action" />
+              </items>
+            </ContextMenu>
+         </contextMenu></JFXTextField>
       <JFXTextField fx:id="empId" layoutX="55.0" layoutY="159.0" promptText="Enter Employee Id" />
       <JFXButton layoutX="72.0" layoutY="322.0" onAction="#addNewUser" text="add new Employee" />
-      <JFXListView fx:id="empList" layoutX="385.0" layoutY="131.0" prefHeight="201.0" prefWidth="200.0" />
+      <JFXListView fx:id="empList" layoutX="342.0" layoutY="153.0" prefHeight="201.0" prefWidth="200.0" />
    </children>
 </AnchorPane>

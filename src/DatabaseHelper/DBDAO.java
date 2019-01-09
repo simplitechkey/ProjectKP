@@ -12,6 +12,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.CheckMenuItem;
+import javafx.scene.control.MenuItem;
 
 /**
  *
@@ -48,10 +50,9 @@ public class DBDAO {
     }
      
      
-       public static  void insertNewTransaction(String empName,String serviceName,String clientName,String transactionDate, Float amount )
+       public static  void insertNewTransaction(String empName,String serviceName,String clientName,String clientMobileNumber,int clientId,String transactionDate, Float amount )
     {
-          ObservableList<String> data=FXCollections.observableArrayList();
-       String sql = "insert into tableTransactions ( empName, serviceName,clientName,transactionDate,amount) values ('" + empName + "','" + serviceName + "','" + clientName + "','" + transactionDate+ "'," + amount + ");";
+       String sql = "insert into tableTransactions ( empName, serviceName,clientName,clientMobileNumber,clientId,transactionDate,amount) values ('" + empName + "','" + serviceName + "','" + clientName + "','"+ clientMobileNumber+ "',"+ clientId+ ",'" + transactionDate+ "'," + amount + ");";
    
         try {
         DBUtil.dbexcuteQuery(sql);
@@ -75,7 +76,7 @@ public class DBDAO {
             ResultSet rs= DBUtil.dbExecute(sql);
             
             while(rs.next()){
-                data.add(new TransactionItem(rs.getInt("transactionId"),rs.getString("empName"),rs.getString("serviceName"),rs.getString("clientName"),rs.getString("transactionDate"),rs.getFloat("amount")));
+                data.add(new TransactionItem(rs.getInt("transactionId"),rs.getString("empName"),rs.getString("serviceName"),rs.getString("clientName"),rs.getString("clientMobileNumber"),rs.getInt("clientId"),rs.getString("transactionDate"),rs.getFloat("amount")));
             }
         } catch (Exception e) {
 
@@ -126,5 +127,73 @@ public class DBDAO {
         }
     
     }
+          
+           public static   ObservableList<MenuItem> searchClientByName(String clientName)
+    {
+          ObservableList<MenuItem> data=FXCollections.observableArrayList();
+       String sql = "select * from tableClients where clientName like  '%"+clientName+"%'";
+   
+        try {
+        ResultSet rs=DBUtil.dbExecute(sql);
+            
+          while (rs.next()){
+              data.add(new CheckMenuItem(rs.getString("clientName")));
+          }
+        } catch (Exception e) {
+
+        }
+    return data;
+    }
+           
+            public static   ObservableList<MenuItem> searchClientByphNo(String phoneNumber)
+    {
+          ObservableList<MenuItem> data=FXCollections.observableArrayList();
+       String sql = "select * from tableClients where clientMobileNumber like  '%"+phoneNumber+"%'";
+   
+        try {
+        ResultSet rs=DBUtil.dbExecute(sql);
+            
+          while (rs.next()){
+              data.add(new CheckMenuItem(rs.getString("clientMobileNumber")));
+          }
+        } catch (Exception e) {
+
+        }
+    return data;
+    }
+            
+             public static   ResultSet getClientObjectByphNo(String phoneNumber)
+    {
+       String sql = "select * from tableClients where clientMobileNumber ='"+phoneNumber+"'";
+    ResultSet rs=null;
+        try {
+         rs=DBUtil.dbExecute(sql);
+         if(rs.next()){
+             return rs;
+         }
+        } catch (Exception e) {
+
+        }
+        
+   return null;
+    }
+             
+              public static   ObservableList<TransactionItem> getAllClientTransactionsById(int  clientId)
+    {
+          ObservableList<TransactionItem> data=FXCollections.observableArrayList();
+        String sql = "select * from tableTransactions where clientId = "+clientId;
+        try {
+            ResultSet rs= DBUtil.dbExecute(sql);
+            
+            while(rs.next()){
+                data.add(new TransactionItem(rs.getInt("transactionId"),rs.getString("empName"),rs.getString("serviceName"),rs.getString("clientName"),rs.getString("clientMobileNumber"),rs.getInt("clientId"),rs.getString("transactionDate"),rs.getFloat("amount")));
+            }
+        } catch (Exception e) {
+
+        }
+        return data;
+    }
+             
+             
     
 }
