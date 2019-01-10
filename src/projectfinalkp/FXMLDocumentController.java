@@ -62,7 +62,7 @@ public class FXMLDocumentController implements Initializable {
                Scene scene = new Scene(root);
                Stage stage=new Stage();
                stage.setScene(scene);
-               stage.initStyle(StageStyle.UNDECORATED);
+              // stage.initStyle(StageStyle.UNDECORATED);
                stage.show();
                
                new FadeInDownBig(root).play();
