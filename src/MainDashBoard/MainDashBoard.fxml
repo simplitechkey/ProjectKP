@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDatePicker?>
 <?import com.jfoenix.controls.JFXDrawer?>
 <?import com.jfoenix.controls.JFXHamburger?>
 <?import javafx.geometry.Insets?>
@@ -15,7 +17,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="1300.0" style="-fx-background-color: white;" styleClass="body" stylesheets="@MaindashSheet.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainDashBoard.MainDashBoardController">
+<AnchorPane prefHeight="600.0" prefWidth="1500.0" style="-fx-background-color: white;" styleClass="body" stylesheets="@MaindashSheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainDashBoard.MainDashBoardController">
    <children>
       <JFXDrawer fx:id="menuDrawer" defaultDrawerSize="350.0" layoutY="94.0" prefHeight="507.0" prefWidth="241.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" />
       <Circle fill="#ebeaea" layoutX="724.0" layoutY="329.0" opacity="0.25" radius="132.0" stroke="WHITE" strokeType="INSIDE" AnchorPane.bottomAnchor="139.0" AnchorPane.leftAnchor="592.0" AnchorPane.rightAnchor="344.0" AnchorPane.topAnchor="197.0">
@@ -53,19 +55,27 @@
       <AnchorPane layoutX="190.0" layoutY="44.0" prefHeight="100.0" prefWidth="1200.0" style="-fx-background-color: black;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <JFXHamburger fx:id="myHamburger" layoutX="14.0" layoutY="68.0" style="-fx-background-color: black;" stylesheets="@MaindashSheet.css" />
-            <Label layoutX="671.0" layoutY="22.0" text="ZULF" textFill="WHITE">
+            <Label layoutX="673.0" layoutY="14.0" prefHeight="27.0" prefWidth="134.0" text="ZULF" textFill="WHITE">
                <font>
                   <Font name="Times New Roman Bold" size="50.0" />
                </font>
             </Label>
+            <AnchorPane layoutX="361.0" layoutY="7.0" prefHeight="86.0" prefWidth="220.0" style="-fx-background-color: white;">
+               <children>
+                  <JFXDatePicker fx:id="dateField" defaultColor="BLACK" layoutX="33.0" prefHeight="27.0" prefWidth="187.0" />
+                  <JFXButton layoutX="42.0" layoutY="45.0" onAction="#appointmentOnDateAction" style="-fx-background-color: black; -fx-background-radius: 40;" text="View Appointments" textFill="WHITE" />
+               </children>
+            </AnchorPane>
+            <Label layoutX="664.0" layoutY="71.0" prefHeight="17.0" prefWidth="235.0" text="Below are Todays appointments" textFill="WHITE" />
+            <Label layoutX="128.0" layoutY="50.0" prefHeight="17.0" prefWidth="220.0" text="  Select date to view appointments" textFill="WHITE" />
          </children>
       </AnchorPane>
       <GridPane fx:id="appointmentGrid" alignment="CENTER" gridLinesVisible="true" layoutX="243.0" layoutY="98.0" prefHeight="77.0" prefWidth="1047.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="100.0">
         <columnConstraints>
-          <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="120.0" prefWidth="120.0" />
+          <ColumnConstraints halignment="CENTER" minWidth="120.0" prefWidth="120.0" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints minHeight="40.0" prefHeight="50.0" valignment="CENTER" vgrow="ALWAYS" />
+          <RowConstraints minHeight="40.0" prefHeight="50.0" valignment="CENTER" />
         </rowConstraints>
       </GridPane>
    </children>

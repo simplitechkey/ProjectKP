@@ -5,6 +5,7 @@
  */
 package MainDashBoard;
 
+import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -25,6 +26,7 @@ import javafx.stage.StageStyle;
  * @author omkarkamate
  */
 public class SlideDrawerController implements Initializable {
+
 
     /**
      * Initializes the controller class.
@@ -80,6 +82,22 @@ public class SlideDrawerController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(SlideDrawerController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    @FXML
+    private void bookAppointmentAction(ActionEvent event) {
+        try {
+            AnchorPane root= FXMLLoader.load(getClass().getResource("/AppointmentBooking/AppointmentBooking.fxml"));
+            
+            Scene scene = new Scene(root);
+            Stage stage=new Stage();
+            stage.setScene(scene);
+            
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(SlideDrawerController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
     
 }
