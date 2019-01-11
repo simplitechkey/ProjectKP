@@ -99,5 +99,22 @@ public class SlideDrawerController implements Initializable {
         }
         
     }
+
+    @FXML
+    private void addServiceAction(ActionEvent event) {
+        
+         try {
+            AnchorPane root= FXMLLoader.load(getClass().getResource("/AddServices/AddServices.fxml"));
+            
+            Scene scene = new Scene(root);
+            Stage stage=new Stage();
+            stage.setScene(scene);
+            
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(SlideDrawerController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
     
 }

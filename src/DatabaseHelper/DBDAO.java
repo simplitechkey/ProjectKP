@@ -195,9 +195,9 @@ public class DBDAO {
         return data;
     }
 
-      public static ObservableList<AppointmentItem> getAllAppointmentsByDate(String date) {
+    public static ObservableList<AppointmentItem> getAllAppointmentsByDate(String date) {
         ObservableList<AppointmentItem> data = FXCollections.observableArrayList();
-        String sql = "select * from tableAppointments where date = '"+date+"'";
+        String sql = "select * from tableAppointments where date = '" + date + "'";
         try {
             ResultSet rs = DBUtil.dbExecute(sql);
 
@@ -209,44 +209,133 @@ public class DBDAO {
         }
         return data;
     }
-    public static void insertNewAppointment( String date, String timeSlot, String clientName, String clientMobileNumber, String empName, String appointmentStatus) {
+
+    public static void insertNewAppointment(String date, String timeSlot, String clientName, String clientMobileNumber, String empName, String appointmentStatus) {
 
         String sql = " INSERT INTO tableAppointments(date  , timeSlot, clientName , clientMobileNumber ,  empName, appointmentStatus) VALUES ('" + date + "','" + timeSlot + "','" + clientName + "','" + clientMobileNumber + "','" + empName + "','" + appointmentStatus + "');";
-        
-       if(! DBDAO.checkifbooked(  empName, timeSlot,date)){
+
+        if (!DBDAO.checkifbooked(empName, timeSlot, date)) {
             try {
-            DBUtil.dbexcuteQuery(sql);
+                DBUtil.dbexcuteQuery(sql);
 
-        } catch (Exception e) {
+            } catch (Exception e) {
 
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("duplicate entry");
+            alert.showAndWait();
         }
-       }else{
-           Alert alert=new Alert(Alert.AlertType.ERROR);
-          alert.setContentText("duplicate entry");
-          alert.showAndWait();
-       }
-       
-    }
-    
 
-    
-    public static boolean checkifbooked( String empName,String timeSlot,String date){
-      
-        String sql="Select * from tableAppointments where empName= '"+empName+"' and  timeSlot = '"+timeSlot+"' and date= '"+date+"'";
+    }
+
+    public static boolean checkifbooked(String empName, String timeSlot, String date) {
+
+        String sql = "Select * from tableAppointments where empName= '" + empName + "' and  timeSlot = '" + timeSlot + "' and date= '" + date + "'";
         try {
-            ResultSet rs=DBUtil.dbExecute(sql);
-            if(rs.next()){
+            ResultSet rs = DBUtil.dbExecute(sql);
+            if (rs.next()) {
                 return true;
-            }else{
+            } else {
                 return false;
             }
-                    } catch (Exception ex) {
+        } catch (Exception ex) {
             Logger.getLogger(DBDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
-        
+
         return false;
     }
 
+    public static String getDateforAppointments() {
+
+        String sql = "select * from todaysDate";
+        String todaysDate = "";
+        try {
+            ResultSet rs = DBUtil.dbExecute(sql);
+            while (rs.next()) {
+                todaysDate = rs.getString("date");
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(DBDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return todaysDate;
+
+    }
+    
+      public static void putDateforAppointments(String todaysDate) {
+          String sql1="delete from todaysDate";
+        String sql = "insert into todaysDate (date) values ('"+todaysDate+"')";
+
+        try {
+            DBUtil.dbexcuteQuery(sql1);
+            DBUtil.dbexcuteQuery(sql);
+            
+        } catch (Exception ex) {
+            Logger.getLogger(DBDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+      
+
+    }
+
+    public static void insertService(String serviceName) {
+        String sql = "insert into tableServices (serviceName) values ('"+serviceName+"')";
+
+        try {
+          
+            DBUtil.dbexcuteQuery(sql);
+            
+        } catch (Exception ex) {
+            Logger.getLogger(DBDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+     public static ObservableList<String> getAllServices() {
+        ObservableList<String> data = FXCollections.observableArrayList();
+        String sql = "select * from tableServices ";
+        try {
+            ResultSet rs = DBUtil.dbExecute(sql);
+
+            while (rs.next()) {
+                data.add(rs.getString("serviceName"));
+            }
+        } catch (Exception e) {
+
+        }
+        return data;
+    }
+     
+      public static ObservableList<MenuItem> getAllServicesbyName(String serviceName) {
+        ObservableList<MenuItem> data = FXCollections.observableArrayList();
+        String sql = "select * from tableServices where serviceName like  '%" + serviceName + "%'";
+        try {
+            ResultSet rs = DBUtil.dbExecute(sql);
+
+            while (rs.next()) {
+                data.add(new MenuItem(rs.getString("serviceName")));
+            }
+        } catch (Exception e) {
+
+        }
+        return data;
+    }
+      
+      
+      public static void deleteServicebyName(String serviceName)
+      {
+           String sql1="delete from todaysDate where serviceName = '"+serviceName+"'";
+       
+
+        try {
+            DBUtil.dbexcuteQuery(sql1);
+                   
+        } catch (Exception ex) {
+            Logger.getLogger(DBDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+      
+      }
+     
+    
 }

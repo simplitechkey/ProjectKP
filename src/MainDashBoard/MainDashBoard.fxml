@@ -52,22 +52,20 @@
          </children>
       </HBox>
       <StackPane AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-      <AnchorPane layoutX="190.0" layoutY="44.0" prefHeight="100.0" prefWidth="1200.0" style="-fx-background-color: black;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane layoutX="14.0" prefHeight="100.0" prefWidth="1200.0" style="-fx-background-color: black;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <JFXHamburger fx:id="myHamburger" layoutX="14.0" layoutY="68.0" style="-fx-background-color: black;" stylesheets="@MaindashSheet.css" />
-            <Label layoutX="673.0" layoutY="14.0" prefHeight="27.0" prefWidth="134.0" text="ZULF" textFill="WHITE">
+            <Label layoutX="927.0" layoutY="7.0" prefHeight="27.0" prefWidth="134.0" text="ZULF" textFill="WHITE">
                <font>
                   <Font name="Times New Roman Bold" size="50.0" />
                </font>
             </Label>
-            <AnchorPane layoutX="361.0" layoutY="7.0" prefHeight="86.0" prefWidth="220.0" style="-fx-background-color: white;">
-               <children>
-                  <JFXDatePicker fx:id="dateField" defaultColor="BLACK" layoutX="33.0" prefHeight="27.0" prefWidth="187.0" />
-                  <JFXButton layoutX="42.0" layoutY="45.0" onAction="#appointmentOnDateAction" style="-fx-background-color: black; -fx-background-radius: 40;" text="View Appointments" textFill="WHITE" />
-               </children>
-            </AnchorPane>
-            <Label layoutX="664.0" layoutY="71.0" prefHeight="17.0" prefWidth="235.0" text="Below are Todays appointments" textFill="WHITE" />
-            <Label layoutX="128.0" layoutY="50.0" prefHeight="17.0" prefWidth="220.0" text="  Select date to view appointments" textFill="WHITE" />
+            <JFXDatePicker fx:id="dateField" defaultColor="BLACK" layoutX="378.0" layoutY="8.0" prefHeight="27.0" prefWidth="210.0" style="-fx-background-color: white;" />
+            <JFXButton layoutX="259.0" layoutY="50.0" onAction="#appointmentOnDateAction" prefHeight="34.0" prefWidth="235.0" style="-fx-background-color: white; -fx-background-radius: 50;" text="View Appointments for above Date" />
+            <Label fx:id="headingId" alignment="CENTER" contentDisplay="CENTER" layoutX="809.0" layoutY="70.0" prefHeight="17.0" prefWidth="317.0" text="Below are Todays appointments" textAlignment="CENTER" textFill="WHITE" />
+            <Label layoutX="150.0" layoutY="13.0" prefHeight="17.0" prefWidth="220.0" text="  Select date to view appointments" textFill="WHITE" />
+            <JFXButton layoutX="502.0" layoutY="50.0" onAction="#showTodayAppointmentsAction" prefHeight="34.0" prefWidth="235.0" style="-fx-background-color: grey; -fx-background-radius: 50;" text="View Todays Appointments" textFill="WHITE" />
+            <JFXButton layoutX="1223.0" layoutY="51.0" onAction="#bookAppointmentAction" prefHeight="34.0" prefWidth="235.0" style="-fx-background-color: grey; -fx-background-radius: 50;" text="Book a new Appointment" textFill="WHITE" />
          </children>
       </AnchorPane>
       <GridPane fx:id="appointmentGrid" alignment="CENTER" gridLinesVisible="true" layoutX="243.0" layoutY="98.0" prefHeight="77.0" prefWidth="1047.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="100.0">

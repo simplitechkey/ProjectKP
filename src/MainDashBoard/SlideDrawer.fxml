@@ -17,7 +17,7 @@
          </VBox.margin>
       </ImageView>
       <JFXButton onAction="#addOrRemoveAction" prefHeight="83.0" prefWidth="351.0" text="Add Staff" />
-      <JFXButton prefHeight="76.0" prefWidth="357.0" text="Add Services" />
+      <JFXButton onAction="#addServiceAction" prefHeight="76.0" prefWidth="357.0" text="Add Services" />
       <JFXButton onAction="#addNewTransaction" prefHeight="76.0" prefWidth="357.0" text="Add New Transaction" />
       <JFXButton onAction="#bookAppointmentAction" prefHeight="76.0" prefWidth="357.0" text="Book an Appointment" />
       <JFXButton onAction="#addNewClientAction" prefHeight="76.0" prefWidth="357.0" text="Add Client" />

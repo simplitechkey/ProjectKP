@@ -7,6 +7,7 @@ package MainDashBoard;
 
 import BeansPackage.AppointmentItem;
 import DatabaseHelper.DBDAO;
+import animatefx.animation.FadeInDownBig;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXDrawer;
@@ -18,6 +19,7 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,9 +28,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
@@ -36,6 +41,7 @@ import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import projectfinalkp.FXMLDocumentController;
 
 /**
@@ -44,19 +50,21 @@ import projectfinalkp.FXMLDocumentController;
  * @author omkarkamate
  */
 public class MainDashBoardController implements Initializable {
-
+    
     @FXML
     private JFXHamburger myHamburger;
     @FXML
     private JFXDrawer menuDrawer;
-
+    
     @FXML
     private GridPane appointmentGrid;
-
-    ArrayList<String> timeSlotArrayList = new ArrayList<>();
+    
+    ArrayList<String> timeSlotArrayList = new ArrayList<>(Arrays.asList("0", "9am to 10am", "10am to 11am", "11am to 12pm", "12pm to 1pm", "1pm to 2pm", "2pm to 3pm", "3pm to 4pm", "4pm to 5pm", "5pm to 6pm", "6pm to 7pm", "7pm to 8pm", "8pm to 9pm"));
     ArrayList<String> empNameArrayList = new ArrayList<>();
     @FXML
     private JFXDatePicker dateField;
+    @FXML
+    private Label headingId;
 
     /**
      * Initializes the controller class.
@@ -66,14 +74,16 @@ public class MainDashBoardController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        timeSlotArrayList.add(String.valueOf(0));
+        
+        
         empNameArrayList.add(String.valueOf(0));
-
+        
         initSlider();
         initGrid();
-        showtodaysappointments();
+        showAppointmentsByDates(DBDAO.getDateforAppointments());
+        headingId.setText("Below are Appointments for the  Date  -"+DBDAO.getDateforAppointments());
     }
-
+    
     private void initSlider() {
         try {
             VBox box = FXMLLoader.load(getClass().getResource("SlideDrawer.fxml"));
@@ -81,7 +91,7 @@ public class MainDashBoardController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
         HamburgerBackArrowBasicTransition hamburgerSlideCloseTransition = new HamburgerBackArrowBasicTransition(myHamburger);
         hamburgerSlideCloseTransition.setRate(-1);
         myHamburger.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
@@ -89,13 +99,13 @@ public class MainDashBoardController implements Initializable {
             hamburgerSlideCloseTransition.play();
             if (menuDrawer.isOpened()) {
                 menuDrawer.close();
-
+                
             } else {
                 menuDrawer.open();
             }
         });
     }
-
+    
     private void initGrid() {
         for (int i = 0; i < DBDAO.getAllEmployees().size(); i++) {
             empNameArrayList.add(DBDAO.getAllEmployees().get(i));
@@ -103,64 +113,109 @@ public class MainDashBoardController implements Initializable {
             Label text = new Label(DBDAO.getAllEmployees().get(i));
             text.setFont(new Font(20));
             appointmentGrid.addColumn(i + 1, text);
-
+            
         }
-
-        int time = 9;
-        for (int i = 0; i <= 12; i++) {
-            timeSlotArrayList.add(String.valueOf(time));
+        
+        for (int i = 1; i < timeSlotArrayList.size(); i++) {
+            
             appointmentGrid.getRowConstraints().add(new RowConstraints(40));
-            Label text = new Label(String.valueOf(time));
-
-            text.setFont(new Font(20));
-            appointmentGrid.addRow(i + 1, new Text(String.valueOf(time)));
-            if (time >= 12) {
-                time = 0;
-            }
-
-            time++;
+            Label text = new Label(String.valueOf(timeSlotArrayList.get(i)));
+            
+            text.setFont(new Font(15));
+            appointmentGrid.addRow(i, text);
+            
         }
-
+        
     }
-
-    public void showtodaysappointments() {
-          DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate today = LocalDate.now();
-        today.format(formatter);
-        System.out.println(today.toString());
-      
-        for (AppointmentItem allAppointment : DBDAO.getAllAppointmentsByDate(today.toString())) {
-
+    
+    public void showAppointmentsByDates(String today) {
+        System.out.println(today);
+        
+        for (AppointmentItem allAppointment : DBDAO.getAllAppointmentsByDate(today)) {
+            
             for (int i = 0; i < timeSlotArrayList.size(); i++) {
                 if (allAppointment.getTimeSlot().equals(timeSlotArrayList.get(i))) {
                     for (int j = 0; j < empNameArrayList.size(); j++) {
                         if (allAppointment.getEmpName().equals(empNameArrayList.get(j))) {
+                            
                             appointmentGrid.add(new Label("booked for  " + allAppointment.getClientName()), j, i);
                         }
                     }
                 }
             }
-
+            
+        }
+    }
+    
+    @FXML
+    private void appointmentOnDateAction(ActionEvent event) {
+        
+        try {
+            if(!dateField.getEditor().getText().isEmpty()){
+                
+                
+            DBDAO.putDateforAppointments(dateField.getValue().toString());
+            Stage closeStage = (Stage) appointmentGrid.getScene().getWindow();
+            closeStage.close();
+            AnchorPane root = FXMLLoader.load(getClass().getResource("MainDashBoard.fxml"));
+            
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene); 
+            stage.show();
+            
+            new FadeInDownBig(root).play();
+            }else{
+                Alert alert=new Alert(Alert.AlertType.ERROR);
+                alert.setContentText("Date Field cannot be Blank.Please Select Some Date");
+                alert.show();
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(MainDashBoardController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @FXML
-    private void appointmentOnDateAction(ActionEvent event) {
-        // appointmentGrid.getChildren().clear();
-
-        /* for (AppointmentItem allAppointment : DBDAO.getAllAppointmentsByDate(dateField.getValue().toString())) {
-
-            for (int i = 0; i < timeSlotArrayList.size(); i++) {
-                if (allAppointment.getTimeSlot().equals(timeSlotArrayList.get(i))) {
-                    for (int j = 0; j < empNameArrayList.size(); j++) {
-                        if (allAppointment.getEmpName().equals(empNameArrayList.get(j))) {
-                            appointmentGrid.add(new Label("booked for  " + allAppointment.getClientName()), j, i);
-                        }
-                    }
-                }
-            }
-
-        }*/
-      
+    private void showTodayAppointmentsAction(ActionEvent event) {
+        
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate today = LocalDate.now();
+            today.format(formatter);
+            
+            DBDAO.putDateforAppointments(today.toString());
+            
+            Stage closeStage = (Stage) appointmentGrid.getScene().getWindow();
+            closeStage.close();
+            AnchorPane root = FXMLLoader.load(getClass().getResource("MainDashBoard.fxml"));
+            
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene); 
+            stage.show();
+            
+            new FadeInDownBig(root).play();
+        } catch (IOException ex) {
+            Logger.getLogger(MainDashBoardController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
+
+    @FXML
+    private void bookAppointmentAction(ActionEvent event) {
+        try {
+            AnchorPane root= FXMLLoader.load(getClass().getResource("/AppointmentBooking/AppointmentBooking.fxml"));
+            
+            Scene scene = new Scene(root);
+            Stage stage=new Stage();
+            stage.setScene(scene);
+            
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(SlideDrawerController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    
+        
+    }
+    
 }

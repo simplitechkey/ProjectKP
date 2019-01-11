@@ -1,11 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXListView?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AddServices.AddServicesController">
-    
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="AddServices.AddServicesController">
+   <children>
+      <JFXTextField fx:id="serviceNameField" layoutX="45.0" layoutY="117.0" prefHeight="27.0" prefWidth="217.0" promptText="Enter Service NameTo Add" />
+      <JFXButton layoutX="37.0" layoutY="187.0" onAction="#addServiceAction" prefHeight="27.0" prefWidth="206.0" text="Add Service" />
+      <JFXListView fx:id="servicesListView" layoutX="376.0" layoutY="14.0" prefHeight="384.0" prefWidth="200.0" />
+      <JFXTextField fx:id="serviceIdField" layoutX="44.0" layoutY="262.0" prefHeight="27.0" prefWidth="217.0" promptText="Enter Service to Delete">
+         <contextMenu>
+            <ContextMenu fx:id="serviceNamesList" />
+         </contextMenu>
+      </JFXTextField>
+      <JFXButton layoutX="71.0" layoutY="317.0" onAction="#deleteServiceAction" prefHeight="27.0" prefWidth="163.0" text="Delete Service" />
+   </children>
 </AnchorPane>
