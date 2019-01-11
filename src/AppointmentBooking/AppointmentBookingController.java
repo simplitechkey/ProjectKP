@@ -110,7 +110,7 @@ public class AppointmentBookingController implements Initializable {
         initContextOnclick();
         appointmentTable.setOnMouseClicked( event -> {
    if( event.getClickCount() == 2 ) {
-      System.out.println( appointmentTable.getSelectionModel().getSelectedItem().getAppointmentId());
+     DBDAO.deleteAppointmentById(appointmentTable.getSelectionModel().getSelectedItem().getAppointmentId());
    }if(event.getButton()==MouseButton.SECONDARY){
         System.out.println( appointmentTable.getSelectionModel().getSelectedItem().getAppointmentId());
    }

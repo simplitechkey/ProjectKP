@@ -336,6 +336,19 @@ public class DBDAO {
 
       
       }
+      
+      public static void deleteAppointmentById(int id){
+          String sql1="delete from tableAppointments where appointmentId = "+id;
+       
+        try {
+            DBUtil.dbexcuteQuery(sql1);
+                   
+        } catch (Exception ex) {
+            Logger.getLogger(DBDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+          
+      }
      
     
 }
