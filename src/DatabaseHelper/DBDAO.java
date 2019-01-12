@@ -22,7 +22,8 @@ import javafx.scene.control.MenuItem;
  * @author omkarkamate
  */
 public class DBDAO {
-
+        public static int clientId=0;
+       public static String phno="";
     public static void insertEmployee(int empId, String empName) {
         String sql = "insert into empTable ( empId, empName) values ('" + empId + "','" + empName + "');";
         try {
@@ -165,20 +166,7 @@ public class DBDAO {
         return null;
     }
 
-    public static ObservableList<TransactionItem> getAllClientTransactionsById(int clientId) {
-        ObservableList<TransactionItem> data = FXCollections.observableArrayList();
-        String sql = "select * from tableTransactions where clientId = " + clientId;
-        try {
-            ResultSet rs = DBUtil.dbExecute(sql);
-
-            while (rs.next()) {
-                data.add(new TransactionItem(rs.getInt("transactionId"), rs.getString("empName"), rs.getString("serviceName"), rs.getString("clientName"), rs.getString("clientMobileNumber"), rs.getInt("clientId"), rs.getString("transactionDate"), rs.getFloat("amount")));
-            }
-        } catch (Exception e) {
-
-        }
-        return data;
-    }
+  
 
     public static ObservableList<AppointmentItem> getAllAppointments() {
         ObservableList<AppointmentItem> data = FXCollections.observableArrayList();
@@ -350,5 +338,24 @@ public class DBDAO {
           
       }
      
-    
+     public static ObservableList<TransactionItem> getAllTransactionByClientId (int id) {
+         
+        String sql = "select * from tableTransactions where clientId = "+id;
+       ObservableList<TransactionItem> data = FXCollections.observableArrayList();
+        try {
+            ResultSet rs = DBUtil.dbExecute(sql);
+
+            while (rs.next()) {
+                data.add(new TransactionItem(rs.getInt("transactionId"), rs.getString("empName"), rs.getString("serviceName"), rs.getString("clientName"), rs.getString("clientMobileNumber"), rs.getInt("clientId"), rs.getString("transactionDate"), rs.getFloat("amount")));
+            }
+        } catch (Exception e) {
+
+        }
+        return data;
 }
+     
+     
+     
+}
+     
+      

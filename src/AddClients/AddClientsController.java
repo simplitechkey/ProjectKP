@@ -8,17 +8,26 @@ package AddClients;
 import BeansPackage.ClientItem;
 import BeansPackage.TransactionItem;
 import DatabaseHelper.DBDAO;
+import animatefx.animation.FadeInDownBig;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseButton;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -82,6 +91,32 @@ public class AddClientsController implements Initializable {
               clientTableView.getColumns().addAll(clientId,clientName,clientMobileNumber,clientEmail,clientDOB,clientGender,location,amountBalance);
               clientTableView.setItems(DBDAO.getAllClients());
               clientTableView.refresh();
+              
+               clientTableView.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 2) {
+                try {
+                    DBDAO.clientId=clientTableView.getSelectionModel().getSelectedItem().getClientId();
+                    DBDAO.phno=clientTableView.getSelectionModel().getSelectedItem().getClientMobileNumber();
+                    
+                    Stage closeStage = (Stage) clientTableView.getScene().getWindow();
+                    closeStage.close();
+                    AnchorPane root = FXMLLoader.load(getClass().getResource("/ClientProfile/ClientProfile.fxml"));
+                    
+                    Scene scene = new Scene(root);
+                    Stage stage = new Stage();
+                    stage.setScene(scene);
+                    stage.show();
+                    
+                    new FadeInDownBig(root).play();
+                } catch (IOException ex) {
+                    Logger.getLogger(AddClientsController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (event.getButton() == MouseButton.SECONDARY) {
+                System.out.println(clientTableView.getSelectionModel().getSelectedItem().getClientId());
+            }
+
+        });
     }    
 
     @FXML

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1200.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.1" fx:controller="ClientProfile.ClientProfileController">
+   <children>
+      <VBox layoutX="246.0" layoutY="14.0">
+         <children>
+            <Label fx:id="idField" prefHeight="28.0" prefWidth="163.0" text="Id :" />
+            <Label fx:id="NameField" prefHeight="28.0" prefWidth="163.0" text="Name :">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </Label>
+            <Label fx:id="MobnoFIeld" prefHeight="28.0" prefWidth="163.0" text="MobileNumber">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </Label>
+            <Label fx:id="DOBFIeld" prefHeight="28.0" prefWidth="163.0" text="DOB">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </Label>
+            <Label fx:id="emailFIeld" prefHeight="28.0" prefWidth="163.0" text="email">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </Label>
+            <Label fx:id="genderField" prefHeight="28.0" prefWidth="163.0" text="Gender">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </Label>
+         </children>
+      </VBox>
+      <AnchorPane layoutX="26.0" layoutY="24.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 10;">
+         <children>
+            <FontAwesomeIconView glyphName="USER" layoutX="46.0" layoutY="143.0" size="150" />
+         </children>
+      </AnchorPane>
+      <TableView fx:id="transactionTable" layoutX="32.0" layoutY="249.0" prefHeight="344.0" prefWidth="894.0" />
+      <Label fx:id="amountBalanceField" layoutX="539.0" layoutY="24.0" prefHeight="44.0" prefWidth="373.0" text="AmountBalance">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
