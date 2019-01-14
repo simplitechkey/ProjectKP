@@ -12,57 +12,40 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="NewTransaction.NewTransactionController">
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="NewTransaction.NewTransactionController">
    <children>
-      <TableView fx:id="transactionTable" layoutX="335.0" layoutY="123.0" prefHeight="452.0" prefWidth="760.0" style="-fx-background-color: grey;" AnchorPane.bottomAnchor="127.0" AnchorPane.rightAnchor="50.0">
+      <TableView fx:id="transactionTable" layoutX="335.0" layoutY="123.0" prefHeight="491.0" prefWidth="760.0" style="-fx-background-color: grey;" AnchorPane.bottomAnchor="88.0" AnchorPane.rightAnchor="50.0">
          <effect>
             <DropShadow />
          </effect></TableView>
       <AnchorPane layoutX="200.0" layoutY="54.0" prefHeight="100.0" prefWidth="1200.0" style="-fx-background-color: black;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-      <VBox layoutX="36.0" layoutY="187.0" prefHeight="287.0" prefWidth="242.0">
-         <children>
-            <JFXComboBox fx:id="empNameList" prefHeight="28.0" prefWidth="239.0" promptText="enter service man name">
-               <VBox.margin>
-                  <Insets bottom="10.0" top="10.0" />
-               </VBox.margin>
-            </JFXComboBox>
-            <JFXTextField fx:id="idField" prefHeight="27.0" prefWidth="204.0" promptText="Enter Client Id" />
-            <JFXTextField fx:id="serviceNameField" labelFloat="true" prefHeight="27.0" prefWidth="204.0" promptText="enter services takebn">
-               <VBox.margin>
-                  <Insets bottom="10.0" top="10.0" />
-               </VBox.margin>
-            </JFXTextField>
-            <JFXTextField fx:id="clientNameField" labelFloat="true" prefHeight="27.0" prefWidth="204.0" promptText="enter client name">
-               <VBox.margin>
-                  <Insets bottom="10.0" top="10.0" />
-               </VBox.margin>
-               <contextMenu>
-                  <ContextMenu fx:id="clientNamesList" />
-               </contextMenu>
-            </JFXTextField>
-            <JFXTextField fx:id="mobileNumberField" labelFloat="true" prefHeight="27.0" prefWidth="204.0" promptText="enter mobile Number">
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin>
-               <contextMenu>
-                  <ContextMenu fx:id="mobnumberList" />
-               </contextMenu>
-            </JFXTextField>
-            <JFXDatePicker fx:id="dateField" defaultColor="BLACK" prefHeight="47.0" prefWidth="243.0">
-               <padding>
-                  <Insets bottom="10.0" top="10.0" />
-               </padding>
-            </JFXDatePicker>
-            <JFXTextField fx:id="amountField" labelFloat="true" prefHeight="27.0" prefWidth="204.0" promptText="Enter the amount">
-               <VBox.margin>
-                  <Insets bottom="10.0" top="10.0" />
-               </VBox.margin>
-            </JFXTextField>
-         </children>
-      </VBox>
-      <JFXButton layoutX="76.0" layoutY="493.0" onAction="#addTransaction" prefHeight="48.0" prefWidth="163.0" style="-fx-background-color: black; -fx-background-radius: 40;" text="Add Transaction" textFill="WHITE">
+      <JFXButton layoutX="95.0" layoutY="537.0" onAction="#addTransaction" prefHeight="8.0" prefWidth="182.0" style="-fx-background-color: black; -fx-background-radius: 40;" text="Add Transaction" textFill="WHITE">
          <font>
-            <Font size="22.0" />
+            <Font size="18.0" />
          </font></JFXButton>
+      <VBox layoutX="46.0" layoutY="160.0" prefHeight="287.0" prefWidth="242.0" />
+      <JFXComboBox fx:id="empNameList" layoutX="77.0" layoutY="139.0" prefHeight="28.0" prefWidth="239.0" promptText="enter service man name" />
+      <JFXTextField fx:id="idField" layoutX="77.0" layoutY="185.0" prefHeight="27.0" prefWidth="242.0" promptText="Enter Client Id" />
+      <JFXTextField fx:id="serviceNameField" labelFloat="true" layoutX="77.0" layoutY="230.0" prefHeight="27.0" prefWidth="242.0" promptText="enter services takebn">
+         <contextMenu>
+            <ContextMenu fx:id="serviceNamesList" />
+         </contextMenu>
+      </JFXTextField>
+      <JFXTextField fx:id="clientNameField" labelFloat="true" layoutX="77.0" layoutY="275.0" prefHeight="27.0" prefWidth="239.0" promptText="enter client name">
+         <contextMenu>
+            <ContextMenu fx:id="clientNamesList" />
+         </contextMenu>
+      </JFXTextField>
+      <JFXTextField fx:id="mobileNumberField" labelFloat="true" layoutX="77.0" layoutY="320.0" prefHeight="27.0" prefWidth="239.0" promptText="enter mobile Number">
+         <contextMenu>
+            <ContextMenu fx:id="mobnumberList" />
+         </contextMenu>
+      </JFXTextField>
+      <JFXDatePicker fx:id="dateField" defaultColor="BLACK" layoutX="77.0" layoutY="365.0" prefHeight="38.0" prefWidth="242.0">
+         <padding>
+            <Insets bottom="10.0" top="10.0" />
+         </padding>
+      </JFXDatePicker>
+      <JFXTextField fx:id="amountField" labelFloat="true" layoutX="77.0" layoutY="433.0" prefHeight="27.0" prefWidth="239.0" promptText="Enter the amount" />
    </children>
 </AnchorPane>

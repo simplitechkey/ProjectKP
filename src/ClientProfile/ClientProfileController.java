@@ -10,6 +10,7 @@ import DatabaseHelper.DBDAO;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Collections;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -43,62 +44,81 @@ public class ClientProfileController implements Initializable {
     private TableView<TransactionItem> transactionTable;
     @FXML
     private Label amountBalanceField;
+    @FXML
+    private Label totalbusinessField;
+
+    double totalBusinessAmount = 0;
+    @FXML
+    private Label lastTransactionDateField;
+
+    String latestTransactionId;
 
     /**
      * Initializes the controller class.
+     *
      * @param url
      * @param rb
      */
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-      TableColumn<TransactionItem,Integer> transactionId=new TableColumn("transactionId");
-              transactionId.setCellValueFactory(new PropertyValueFactory<>("transactionId"));
-              
-              TableColumn<TransactionItem,String> empName=new TableColumn("empName");
-              empName.setCellValueFactory(new PropertyValueFactory<>("empName"));
-              
-              TableColumn<TransactionItem,String>serviceName=new TableColumn("serviceName");
-              serviceName.setCellValueFactory(new PropertyValueFactory<>("serviceName"));
-              
-              TableColumn<TransactionItem,String>clientNameColumn=new TableColumn("clientName");
-              clientNameColumn.setCellValueFactory(new PropertyValueFactory<>("clientName"));
-              
-               TableColumn<TransactionItem,String>clientMobileNumber=new TableColumn("clientMobileNumber");
-              clientMobileNumber.setCellValueFactory(new PropertyValueFactory<>("clientMobileNumber"));
-              
-               TableColumn<TransactionItem,Integer>clientId=new TableColumn("clientId");
-              clientId.setCellValueFactory(new PropertyValueFactory<>("clientId"));
-              
-              
-              TableColumn<TransactionItem,String>transactionDate=new TableColumn("transactionDate");
-              transactionDate.setCellValueFactory(new PropertyValueFactory<>("transactionDate"));
-              
-              TableColumn<TransactionItem,Float>amount=new TableColumn("amount");
-              amount.setCellValueFactory(new PropertyValueFactory<>("amount"));
-              
-             
-              transactionTable.getColumns().addAll(transactionId,empName,serviceName,clientNameColumn,clientMobileNumber,clientId,transactionDate,amount);
-              transactionTable.setItems(DBDAO.getAllTransactionByClientId(DBDAO.clientId));
-              transactionTable.refresh();
-              setClientInfo();
-        
-    }    
-    
-    public void setClientInfo(){
-        try {
-            ResultSet rs=DBDAO.getClientObjectByphNo(DBDAO.phno);
-            NameField.setText("Name : "+rs.getString("clientName"));
-            idField.setText("ID : " +rs.getInt("clientId"));
-            MobnoFIeld.setText("Mobile Number  : "+rs.getString("clientMobileNumber"));
-            DOBFIeld.setText("DOB  : "+ rs.getString("clientDOB"));
-            emailFIeld.setText("Email Id : "+rs.getString("clientEmail"));
-            genderField.setText("Gender : "+rs.getString("clientGender"));
-            amountBalanceField.setText("Amount : "+rs.getFloat("amountBalance"));
+        TableColumn<TransactionItem, Integer> transactionId = new TableColumn("transactionId");
+        transactionId.setCellValueFactory(new PropertyValueFactory<>("transactionId"));
 
+        TableColumn<TransactionItem, String> empName = new TableColumn("empName");
+        empName.setCellValueFactory(new PropertyValueFactory<>("empName"));
+
+        TableColumn<TransactionItem, String> serviceName = new TableColumn("serviceName");
+        serviceName.setCellValueFactory(new PropertyValueFactory<>("serviceName"));
+
+        TableColumn<TransactionItem, String> clientNameColumn = new TableColumn("clientName");
+        clientNameColumn.setCellValueFactory(new PropertyValueFactory<>("clientName"));
+
+        TableColumn<TransactionItem, String> clientMobileNumber = new TableColumn("clientMobileNumber");
+        clientMobileNumber.setCellValueFactory(new PropertyValueFactory<>("clientMobileNumber"));
+
+        TableColumn<TransactionItem, Integer> clientId = new TableColumn("clientId");
+        clientId.setCellValueFactory(new PropertyValueFactory<>("clientId"));
+
+        TableColumn<TransactionItem, String> transactionDate = new TableColumn("transactionDate");
+        transactionDate.setCellValueFactory(new PropertyValueFactory<>("transactionDate"));
+
+        TableColumn<TransactionItem, Float> amount = new TableColumn("amount");
+        amount.setCellValueFactory(new PropertyValueFactory<>("amount"));
+
+        transactionTable.getColumns().addAll(transactionId, empName, serviceName, clientNameColumn, clientMobileNumber, clientId, transactionDate, amount);
+        transactionTable.setItems(DBDAO.getAllTransactionByClientId(DBDAO.clientId));
+        for (int i = 0; i < DBDAO.getAllTransactionByClientId(DBDAO.clientId).size(); i++) {
+            totalBusinessAmount += DBDAO.getAllTransactionByClientId(DBDAO.clientId).get(i).getAmount();
+            latestTransactionId = DBDAO.getAllTransactionByClientId(DBDAO.clientId).get(i).getTransactionDate();
+        }
+        System.out.println("latestTransactionId :" + latestTransactionId);
+
+        transactionTable.refresh();
+        setClientInfo();
+
+    }
+
+    public void setClientInfo() {
+        try {
+            ResultSet rs = DBDAO.getClientObjectByphNo(DBDAO.phno);
+            NameField.setText("Name : " + rs.getString("clientName"));
+            idField.setText("ID : " + rs.getInt("clientId"));
+            MobnoFIeld.setText("Mobile Number  : " + rs.getString("clientMobileNumber"));
+            DOBFIeld.setText("DOB  : " + rs.getString("clientDOB"));
+            emailFIeld.setText("Email Id : " + rs.getString("clientEmail"));
+            genderField.setText("Gender : " + rs.getString("clientGender"));
+            double amountBal = rs.getFloat("amountBalance") - totalBusinessAmount;
+            if (amountBal <= 0) {
+                amountBal = 0;
+            }
+            amountBalanceField.setText("Amount Balance : " + amountBal);
+            DBDAO.updateAmountBalanceofCLient(rs.getInt("clientId"),amountBal);
+            totalbusinessField.setText("Total Business  : " + totalBusinessAmount);
+            lastTransactionDateField.setText("Last Transaction Date : "+latestTransactionId);
         } catch (SQLException ex) {
             Logger.getLogger(ClientProfileController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
 }

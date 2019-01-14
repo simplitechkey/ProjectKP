@@ -6,7 +6,6 @@
 package AppointmentBooking;
 
 import BeansPackage.AppointmentItem;
-import BeansPackage.ClientItem;
 import DatabaseHelper.DBDAO;
 import NewTransaction.NewTransactionController;
 import com.jfoenix.controls.JFXDatePicker;
@@ -16,6 +15,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,6 +24,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Bounds;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
@@ -60,6 +63,8 @@ public class AppointmentBookingController implements Initializable {
     private TableView<AppointmentItem> appointmentTable;
     @FXML
     private ContextMenu statusList;
+
+    ArrayList<JFXTextField> compulsortTf;
 
     ArrayList<String> timeSlotArrayList = new ArrayList<>(Arrays.asList("0", "9am to 10am", "10am to 11am", "11am to 12pm", "12pm to 1pm", "1pm to 2pm", "2pm to 3pm", "3pm to 4pm", "4pm to 5pm", "5pm to 6pm", "6pm to 7pm", "7pm to 8pm", "8pm to 9pm"));
 
@@ -105,26 +110,57 @@ public class AppointmentBookingController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        compulsortTf = new ArrayList<>(Arrays.asList(clientNameField, timeSlotField, empNameField, clientMobileNumberField));
         initAppointmentTable();
         initContextMenus();
         initContextOnclick();
         appointmentTable.setOnMouseClicked(event -> {
             if (event.getClickCount() == 2) {
+                Alert alert = new Alert(AlertType.CONFIRMATION);
+                alert.setTitle("Confirmation Dialog");
+                alert.setHeaderText("Delete Appointment");
+                alert.setContentText("Are you sure you want to delete this appointment?");
+
+                Optional<ButtonType> result = alert.showAndWait();
+                if (result.get() == ButtonType.OK) {
+
                 DBDAO.deleteAppointmentById(appointmentTable.getSelectionModel().getSelectedItem().getAppointmentId());
+                appointmentTable.setItems(DBDAO.getAllAppointments());
+                appointmentTable.refresh();
+                }
             }
             if (event.getButton() == MouseButton.SECONDARY) {
                 System.out.println(appointmentTable.getSelectionModel().getSelectedItem().getAppointmentId());
             }
 
         });
+
+    }
+
+    private boolean checkSomeFieldEmpty() {
+        boolean isFieldEmpty = false;
+        for (JFXTextField compulsortTf1 : compulsortTf) {
+            if (compulsortTf1.getText().trim().isEmpty() || compulsortTf1.getText().equals("") || compulsortTf1.getText() == null) {
+                isFieldEmpty = true;
+            }
+        }
+
+        return isFieldEmpty;
     }
 
     @FXML
     private void bookAppointmentAction(ActionEvent event) {
-
-        DBDAO.insertNewAppointment(dateField.getValue().toString(), timeSlotField.getText(), clientNameField.getText(), clientMobileNumberField.getText(), empNameField.getText(), statusField.getText());
-        appointmentTable.setItems(DBDAO.getAllAppointments());
-        appointmentTable.refresh();
+        if (checkSomeFieldEmpty() || dateField.getEditor().getText().isEmpty()) {
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setHeaderText("One or more Fields are Empty");
+            alert.setContentText("Please fill all Fields to book this appointment.");
+            alert.showAndWait();
+        } else {
+            DBDAO.insertNewAppointment(dateField.getValue().toString(), timeSlotField.getText(), clientNameField.getText(), clientMobileNumberField.getText(), empNameField.getText(), statusField.getText());
+            appointmentTable.setItems(DBDAO.getAllAppointments());
+            appointmentTable.refresh();
+        }
     }
 
     private void initAppointmentTable() {

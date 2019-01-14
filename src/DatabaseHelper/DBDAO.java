@@ -107,7 +107,6 @@ public class DBDAO {
     }
 
     public static void insertNewClient(String clientName, String clientMobileNumber, String clientEmail, String clientDOB, String clientGender, String location, double amountBalance) {
-        ObservableList<String> data = FXCollections.observableArrayList();
         String sql = "INSERT INTO tableClients(clientName,clientMobileNumber,clientEmail,clientDOB,clientGender,location,amountBalance) VALUES ('" + clientName + "','" + clientMobileNumber + "','" + clientEmail + "','" + clientDOB + "','" + clientGender + "','" + location + "'," + amountBalance + ");";
 
         try {
@@ -312,9 +311,7 @@ public class DBDAO {
       
       public static void deleteServicebyName(String serviceName)
       {
-           String sql1="delete from todaysDate where serviceName = '"+serviceName+"'";
-       
-
+           String sql1="delete from tableServices where serviceName = '"+serviceName+"'";
         try {
             DBUtil.dbexcuteQuery(sql1);
                    
@@ -353,6 +350,18 @@ public class DBDAO {
         }
         return data;
 }
+
+    public static void updateAmountBalanceofCLient(long clientId,Double amount) {
+        String sql="update tableClients set amountbalance = "+amount+" where clientId = "+clientId;
+         try {
+            DBUtil.dbexcuteQuery(sql);
+                   
+        } catch (Exception ex) {
+            Logger.getLogger(DBDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+     
+     
      
      
      

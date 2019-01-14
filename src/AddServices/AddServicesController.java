@@ -53,7 +53,7 @@ public class AddServicesController implements Initializable {
       });
      
      
-      serviceNamesList.setOnAction(e ->serviceNameField.setText(((MenuItem)e.getTarget()).getText()));
+      serviceNamesList.setOnAction(e ->serviceIdField.setText(((MenuItem)e.getTarget()).getText()));
     
     }    
 
@@ -66,7 +66,7 @@ public class AddServicesController implements Initializable {
 
     @FXML
     private void deleteServiceAction(ActionEvent event) {
-        DBDAO.deleteServicebyName(serviceNameField.getText().trim());
+        DBDAO.deleteServicebyName(serviceIdField.getText());
           servicesListView.setItems(DBDAO.getAllServices());
            servicesListView.refresh();
     }

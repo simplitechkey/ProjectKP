@@ -6,9 +6,9 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="BOTTOM_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="589.0" prefWidth="255.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainDashBoard.SlideDrawerController">
+<VBox alignment="BOTTOM_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="589.0" prefWidth="255.0" style="-fx-border-color: white;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainDashBoard.SlideDrawerController">
    <children>
-      <ImageView fitHeight="162.0" fitWidth="253.0" pickOnBounds="true">
+      <ImageView fitHeight="162.0" fitWidth="234.0" pickOnBounds="true">
          <image>
             <Image url="@dashback.jpg" />
          </image>
@@ -16,10 +16,45 @@
             <Insets />
          </VBox.margin>
       </ImageView>
-      <JFXButton onAction="#addOrRemoveAction" prefHeight="83.0" prefWidth="351.0" text="Add Staff" />
-      <JFXButton onAction="#addServiceAction" prefHeight="76.0" prefWidth="357.0" text="Add Services" />
-      <JFXButton onAction="#addNewTransaction" prefHeight="76.0" prefWidth="357.0" text="Add New Transaction" />
-      <JFXButton onAction="#bookAppointmentAction" prefHeight="76.0" prefWidth="357.0" text="Book an Appointment" />
-      <JFXButton onAction="#addNewClientAction" prefHeight="76.0" prefWidth="357.0" text="Add Client" />
+      <JFXButton alignment="CENTER" onAction="#bookAppointmentAction" prefHeight="76.0" prefWidth="357.0" style="-fx-background-color: white;" text="Book a new Appointment" textAlignment="CENTER">
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </JFXButton>
+      <JFXButton alignment="CENTER" onAction="#addOrRemoveAction" prefHeight="83.0" prefWidth="351.0" style="-fx-background-color: white;" text="Add or Remove Stylists" textAlignment="CENTER">
+         <VBox.margin>
+            <Insets />
+         </VBox.margin></JFXButton>
+      <JFXButton alignment="CENTER" onAction="#addNewClientAction" prefHeight="76.0" prefWidth="357.0" style="-fx-background-color: white;" text="Add New Client" textAlignment="CENTER">
+         <VBox.margin>
+            <Insets />
+         </VBox.margin></JFXButton>
+      <JFXButton alignment="CENTER" onAction="#addNewTransaction" prefHeight="76.0" prefWidth="357.0" style="-fx-background-color: white;" text="Add New Transaction" textAlignment="CENTER">
+         <VBox.margin>
+            <Insets />
+         </VBox.margin></JFXButton>
+      <JFXButton alignment="CENTER" onAction="#addServiceAction" prefHeight="76.0" prefWidth="357.0" style="-fx-background-color: white;" text="Add or Delete Services" textAlignment="CENTER">
+         <VBox.margin>
+            <Insets />
+         </VBox.margin></JFXButton>
+      <JFXButton alignment="CENTER" onAction="#servicesDueAction" prefHeight="76.0" prefWidth="357.0" style="-fx-background-color: white;" text="Services Due" textAlignment="CENTER">
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </JFXButton>
+      <JFXButton alignment="CENTER" onAction="#salesReportAction" prefHeight="76.0" prefWidth="357.0" style="-fx-background-color: white;" text="Sales Report" textAlignment="CENTER">
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </JFXButton>
+      <JFXButton alignment="CENTER" onAction="#inventoryAction" prefHeight="76.0" prefWidth="357.0" style="-fx-background-color: white;" text="Inventory" textAlignment="CENTER" />
+      <JFXButton alignment="CENTER" onAction="#helpAction" prefHeight="76.0" prefWidth="276.0" style="-fx-background-color: white;" text="Help" textAlignment="CENTER">
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </JFXButton>
    </children>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
 </VBox>
