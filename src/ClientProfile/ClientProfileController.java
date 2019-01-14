@@ -51,7 +51,7 @@ public class ClientProfileController implements Initializable {
     @FXML
     private Label lastTransactionDateField;
 
-    String latestTransactionId;
+    String latestTransactionDate;
 
     /**
      * Initializes the controller class.
@@ -90,9 +90,9 @@ public class ClientProfileController implements Initializable {
         transactionTable.setItems(DBDAO.getAllTransactionByClientId(DBDAO.clientId));
         for (int i = 0; i < DBDAO.getAllTransactionByClientId(DBDAO.clientId).size(); i++) {
             totalBusinessAmount += DBDAO.getAllTransactionByClientId(DBDAO.clientId).get(i).getAmount();
-            latestTransactionId = DBDAO.getAllTransactionByClientId(DBDAO.clientId).get(i).getTransactionDate();
+            latestTransactionDate = DBDAO.getAllTransactionByClientId(DBDAO.clientId).get(i).getTransactionDate();
         }
-        System.out.println("latestTransactionId :" + latestTransactionId);
+        System.out.println("latestTransactionId :" + latestTransactionDate);
 
         transactionTable.refresh();
         setClientInfo();
@@ -108,14 +108,11 @@ public class ClientProfileController implements Initializable {
             DOBFIeld.setText("DOB  : " + rs.getString("clientDOB"));
             emailFIeld.setText("Email Id : " + rs.getString("clientEmail"));
             genderField.setText("Gender : " + rs.getString("clientGender"));
-            double amountBal = rs.getFloat("amountBalance") - totalBusinessAmount;
-            if (amountBal <= 0) {
-                amountBal = 0;
-            }
-            amountBalanceField.setText("Amount Balance : " + amountBal);
-            DBDAO.updateAmountBalanceofCLient(rs.getInt("clientId"),amountBal);
+           
+            amountBalanceField.setText("Amount Balance : " + rs.getFloat("amountBalance"));
+            
             totalbusinessField.setText("Total Business  : " + totalBusinessAmount);
-            lastTransactionDateField.setText("Last Transaction Date : "+latestTransactionId);
+            lastTransactionDateField.setText("Last Transaction Date : "+latestTransactionDate);
         } catch (SQLException ex) {
             Logger.getLogger(ClientProfileController.class.getName()).log(Level.SEVERE, null, ex);
         }

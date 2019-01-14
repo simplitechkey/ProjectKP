@@ -11,16 +11,16 @@ package BeansPackage;
  */
 public class TransactionItem {
   
-    int transactionId;
+    long transactionId;
     String empName;
     String serviceName;
     String clientName;
     String clientMobileNumber;
     int clientId;
-    Float amount;
+    double amount;
     String transactionDate;
 
-    public TransactionItem(int transactionId, String empName, String serviceName, String clientName, String clientMobileNumber, int clientId, String transactionDate, Float amount) {
+    public TransactionItem(long transactionId, String empName, String serviceName, String clientName, String clientMobileNumber, int clientId, String transactionDate, double amount) {
         this.transactionId = transactionId;
         this.empName = empName;
         this.serviceName = serviceName;
@@ -32,11 +32,11 @@ public class TransactionItem {
     }
 
 
-    public int getTransactionId() {
+    public long getTransactionId() {
         return transactionId;
     }
 
-    public void setTransactionId(int transactionId) {
+    public void setTransactionId(long transactionId) {
         this.transactionId = transactionId;
     }
 
@@ -80,11 +80,11 @@ public class TransactionItem {
         this.clientId = clientId;
     }
 
-    public Float getAmount() {
+    public double getAmount() {
         return amount;
     }
 
-    public void setAmount(Float amount) {
+    public void setAmount(double amount) {
         this.amount = amount;
     }
 

@@ -48,7 +48,7 @@ public class DBDAO {
         return data;
     }
 
-    public static void insertNewTransaction(String empName, String serviceName, String clientName, String clientMobileNumber, int clientId, String transactionDate, Float amount) {
+    public static void insertNewTransaction(String empName, String serviceName, String clientName, String clientMobileNumber, long clientId, String transactionDate, double amount) {
         String sql = "insert into tableTransactions ( empName, serviceName,clientName,clientMobileNumber,clientId,transactionDate,amount) values ('" + empName + "','" + serviceName + "','" + clientName + "','" + clientMobileNumber + "'," + clientId + ",'" + transactionDate + "'," + amount + ");";
 
         try {
@@ -80,7 +80,7 @@ public class DBDAO {
         return data;
     }
 
-    public static void deleteTransaction(int transactionId) {
+    public static void deleteTransaction(long transactionId) {
         try {
             String sql = "delete from tableTransactions where transactionId = " + transactionId;
 
@@ -351,13 +351,23 @@ public class DBDAO {
         return data;
 }
 
-    public static void updateAmountBalanceofCLient(long clientId,Double amount) {
+    public static void updateAmountBalanceofCLient(long clientId,double amount) {
+        if(amount<=0){
+            String sql="update tableClients set amountbalance = 0.0 where clientId = "+clientId;
+         try {
+            DBUtil.dbexcuteQuery(sql);
+             
+        } catch (Exception ex) {
+            Logger.getLogger(DBDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }else{
         String sql="update tableClients set amountbalance = "+amount+" where clientId = "+clientId;
          try {
             DBUtil.dbexcuteQuery(sql);
-                   
+             
         } catch (Exception ex) {
             Logger.getLogger(DBDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
         }
     }
      

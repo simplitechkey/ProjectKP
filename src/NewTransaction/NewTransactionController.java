@@ -73,6 +73,8 @@ public class NewTransactionController implements Initializable {
 
     @FXML
     private JFXTextField idField;
+    
+    ResultSet resultSet;
 
     /**
      * Initializes the controller class.
@@ -149,13 +151,13 @@ public class NewTransactionController implements Initializable {
             try {
                 String phno = ((MenuItem) e.getTarget()).getText();
                 mobileNumberField.setText(phno);
-                ResultSet rs = DBDAO.getClientObjectByphNo(phno);
+                resultSet = DBDAO.getClientObjectByphNo(phno);
 
-                idField.setText(String.valueOf(rs.getInt("clientId")));
-                clientNameField.setText(rs.getString("clientName"));
-                amountField.setText(String.valueOf(rs.getDouble("amountBalance")));
-                transactionTable.setItems(DBDAO.getAllTransactionByClientId(rs.getInt("clientId")));
-            } catch (SQLException ex) {
+                idField.setText(String.valueOf(resultSet.getLong("clientId")));
+                clientNameField.setText(resultSet.getString("clientName"));
+                //amountField.setText(String.valueOf(resultSet.getDouble("amountBalance")));
+                transactionTable.setItems(DBDAO.getAllTransactionByClientId(resultSet.getInt("clientId")));
+            } catch (Exception ex) {
                 Logger.getLogger(NewTransactionController.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
@@ -201,10 +203,14 @@ public class NewTransactionController implements Initializable {
     @FXML
     private void addTransaction(ActionEvent event) {
 
-        DBDAO.insertNewTransaction(empNameList.getValue(), serviceNameField.getText().trim(), clientNameField.getText(), mobileNumberField.getText().trim(), Integer.parseInt(idField.getText().trim()), dateField.getValue().toString(), Float.parseFloat(amountField.getText().trim()));
-
-        transactionTable.setItems(DBDAO.getAllTransactions());
-        transactionTable.refresh();
+        try {
+            DBDAO.insertNewTransaction(empNameList.getValue(), serviceNameField.getText().trim(), clientNameField.getText(), mobileNumberField.getText().trim(), Long.parseLong(idField.getText().trim()), dateField.getValue().toString(), Double.parseDouble(amountField.getText().trim()));
+            DBDAO.updateAmountBalanceofCLient(resultSet.getLong("clientId"),(resultSet.getDouble("amountBalance")- Double.parseDouble(amountField.getText().trim())));
+            transactionTable.setItems(DBDAO.getAllTransactions());
+            transactionTable.refresh();
+        } catch (SQLException ex) {
+            Logger.getLogger(NewTransactionController.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
 

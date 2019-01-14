@@ -11,23 +11,23 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="1350.0" style="-fx-background-color: white;" styleClass="body" stylesheets="@MaindashSheet.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainDashBoard.MainDashBoardController">
+<AnchorPane prefHeight="600.0" prefWidth="1350.0" style="-fx-background-color: white;" styleClass="body" stylesheets="@MaindashSheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainDashBoard.MainDashBoardController">
    <children>
       <JFXDrawer fx:id="menuDrawer" defaultDrawerSize="350.0" layoutY="94.0" prefHeight="507.0" prefWidth="241.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" />
       <AnchorPane layoutX="14.0" prefHeight="100.0" prefWidth="1200.0" style="-fx-background-color: black;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <JFXHamburger fx:id="myHamburger" layoutX="14.0" layoutY="68.0" style="-fx-background-color: black;" stylesheets="@MaindashSheet.css" />
-            <Label layoutX="833.0" layoutY="8.0" prefHeight="27.0" prefWidth="134.0" text="ZULF" textFill="WHITE">
+            <Label layoutX="824.0" layoutY="7.0" prefHeight="27.0" prefWidth="134.0" text="ZULF" textFill="WHITE">
                <font>
                   <Font name="Times New Roman Bold" size="50.0" />
                </font>
             </Label>
             <JFXDatePicker fx:id="dateField" defaultColor="BLACK" layoutX="378.0" layoutY="8.0" prefHeight="27.0" prefWidth="210.0" style="-fx-background-color: white;" />
             <JFXButton layoutX="259.0" layoutY="50.0" onAction="#appointmentOnDateAction" prefHeight="34.0" prefWidth="235.0" style="-fx-background-color: white; -fx-background-radius: 50;" text="View Appointments for above Date" />
-            <Label fx:id="headingId" alignment="CENTER" contentDisplay="CENTER" layoutX="760.0" layoutY="70.0" prefHeight="17.0" prefWidth="297.0" text="Below are Todays appointments" textAlignment="CENTER" textFill="WHITE" />
+            <Label fx:id="headingId" alignment="CENTER" contentDisplay="CENTER" layoutX="762.0" layoutY="70.0" prefHeight="17.0" prefWidth="275.0" text="Below are Todays appointments" textAlignment="CENTER" textFill="WHITE" />
             <Label layoutX="150.0" layoutY="13.0" prefHeight="17.0" prefWidth="220.0" text="  Select date to view appointments" textFill="WHITE" />
             <JFXButton layoutX="502.0" layoutY="50.0" onAction="#showTodayAppointmentsAction" prefHeight="34.0" prefWidth="235.0" style="-fx-background-color: grey; -fx-background-radius: 50;" text="View Todays Appointments" textFill="WHITE" />
-            <JFXButton layoutX="1223.0" layoutY="51.0" onAction="#bookAppointmentAction" prefHeight="34.0" prefWidth="235.0" style="-fx-background-color: grey; -fx-background-radius: 50;" text="Book a new Appointment" textFill="WHITE" AnchorPane.rightAnchor="50.0" />
+            <JFXButton layoutX="1088.0" layoutY="50.0" onAction="#bookAppointmentAction" prefHeight="34.0" prefWidth="235.0" style="-fx-background-color: grey; -fx-background-radius: 50;" text="Book a new Appointment" textFill="WHITE" AnchorPane.rightAnchor="27.0" />
          </children>
       </AnchorPane>
       <GridPane fx:id="appointmentGrid" alignment="CENTER" gridLinesVisible="true" layoutX="54.0" layoutY="98.0" prefHeight="490.0" prefWidth="1286.0" style="-fx-background-color: black;" styleClass="mygridStyle" stylesheets="@MaindashSheet.css" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="105.0">
