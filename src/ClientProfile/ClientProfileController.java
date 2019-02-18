@@ -109,7 +109,7 @@ public class ClientProfileController implements Initializable {
             emailFIeld.setText("Email Id : " + rs.getString("clientEmail"));
             genderField.setText("Gender : " + rs.getString("clientGender"));
            
-            amountBalanceField.setText("Amount Balance : " + rs.getFloat("amountBalance"));
+            amountBalanceField.setText("Amount Balance : " + rs.getDouble("amountBalance"));
             
             totalbusinessField.setText("Total Business  : " + totalBusinessAmount);
             lastTransactionDateField.setText("Last Transaction Date : "+latestTransactionDate);

@@ -106,7 +106,7 @@ public class DBDAO {
         return data;
     }
 
-    public static void insertNewClient(String clientName, String clientMobileNumber, String clientEmail, String clientDOB, String clientGender, String location, double amountBalance) {
+    public static void insertNewClient(String clientName, String clientMobileNumber, String clientEmail, String clientDOB, String clientGender, String location, Double amountBalance) {
         String sql = "INSERT INTO tableClients(clientName,clientMobileNumber,clientEmail,clientDOB,clientGender,location,amountBalance) VALUES ('" + clientName + "','" + clientMobileNumber + "','" + clientEmail + "','" + clientDOB + "','" + clientGender + "','" + location + "'," + amountBalance + ");";
 
         try {

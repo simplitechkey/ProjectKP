@@ -81,7 +81,7 @@ public class MainDashBoardController implements Initializable {
         initSlider();
         initGrid();
         showAppointmentsByDates(DBDAO.getDateforAppointments());
-        headingId.setText("Below are Appointments for the  Date  :  " + DBDAO.getDateforAppointments());
+        headingId.setText("Below are Appointments for the  Date : " + DBDAO.getDateforAppointments());
     }
 
     private void initSlider() {

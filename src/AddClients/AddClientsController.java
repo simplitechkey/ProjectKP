@@ -123,7 +123,7 @@ public class AddClientsController implements Initializable {
 
     @FXML
     private void addClientAction(ActionEvent event) {
-        DBDAO.insertNewClient(clientNameField.getText().trim(), clientMobNoField.getText().trim(), clientEmailField.getText().trim(), clientDOBField.getValue().toString(), clientGenderField.getValue(), locationField.getValue(),Double.parseDouble(amountPending.getText()));
+        DBDAO.insertNewClient(clientNameField.getText().trim(), clientMobNoField.getText().trim(), clientEmailField.getText().trim(), clientDOBField.getValue().toString(), clientGenderField.getValue(), locationField.getValue(),Double.parseDouble(amountPending.getText().trim()));
           clientTableView.setItems(DBDAO.getAllClients());
           clientTableView.refresh();
     }

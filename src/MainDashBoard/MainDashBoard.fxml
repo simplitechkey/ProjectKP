@@ -24,7 +24,7 @@
             </Label>
             <JFXDatePicker fx:id="dateField" defaultColor="BLACK" layoutX="378.0" layoutY="8.0" prefHeight="27.0" prefWidth="210.0" style="-fx-background-color: white;" />
             <JFXButton layoutX="259.0" layoutY="50.0" onAction="#appointmentOnDateAction" prefHeight="34.0" prefWidth="235.0" style="-fx-background-color: white; -fx-background-radius: 50;" text="View Appointments for above Date" />
-            <Label fx:id="headingId" alignment="CENTER" contentDisplay="CENTER" layoutX="762.0" layoutY="70.0" prefHeight="17.0" prefWidth="275.0" text="Below are Todays appointments" textAlignment="CENTER" textFill="WHITE" />
+            <Label fx:id="headingId" alignment="BOTTOM_LEFT" contentDisplay="CENTER" layoutX="762.0" layoutY="70.0" prefHeight="17.0" prefWidth="322.0" text="Below are Todays appointments" textFill="WHITE" />
             <Label layoutX="150.0" layoutY="13.0" prefHeight="17.0" prefWidth="220.0" text="  Select date to view appointments" textFill="WHITE" />
             <JFXButton layoutX="502.0" layoutY="50.0" onAction="#showTodayAppointmentsAction" prefHeight="34.0" prefWidth="235.0" style="-fx-background-color: grey; -fx-background-radius: 50;" text="View Todays Appointments" textFill="WHITE" />
             <JFXButton layoutX="1088.0" layoutY="50.0" onAction="#bookAppointmentAction" prefHeight="34.0" prefWidth="235.0" style="-fx-background-color: grey; -fx-background-radius: 50;" text="Book a new Appointment" textFill="WHITE" AnchorPane.rightAnchor="27.0" />
